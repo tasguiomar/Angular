@@ -38,5 +38,5 @@
             delete $localStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
         }
-    }
+    }//so para fazer ultimo commit 
 })();
