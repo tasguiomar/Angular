@@ -8,8 +8,6 @@ const Todo = require('./public/scripts/models/todos')
 const bodyParser = require('body-parser');
 
 
-//const result = dotenv.config()
-
 
 
 app.use(express.static(__dirname + "/public"));
