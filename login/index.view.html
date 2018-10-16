@@ -9,7 +9,7 @@
                     <label>Email</label>
                     <input ng-model="user.email" type="email" required>
                     <div ng-messages="logForm.$error">
-                        <div ng-message="required">Email address is required</div>
+                        <div ng-message="required"></div>
                     </div>
                 </md-input-container>
                 <md-input-container>
@@ -17,7 +17,7 @@
                     <label>Password</label>
                     <input ng-model="user.password" type="password" required>
                     <div ng-messages="logForm.$error">
-                        <div ng-message="required">Password is required</div>
+                        <div ng-message="required"></div>
                     </div>
                 </md-input-container>
                 <div layout="colum">
@@ -49,7 +49,7 @@
                       <label>Name</label>
                       <input ng-model="user.name" type="text" required>
                       <div ng-messages="registryForm.$error">
-                        <div ng-message="required">Name</div>
+                        <div ng-message="required"></div>
                       </div>
                     </md-input-container>
   
@@ -57,7 +57,7 @@
                       <label>Password</label>
                       <input ng-model="user.password" type="password" required>
                       <div ng-messages="registryForm.$error">
-                        <div ng-message="required">Password</div>
+                        <div ng-message="required"></div>
                       </div>
                     </md-input-container>
                     <md-button ng-click="register()" class="md-raised" style="background: #FFFFFF" type="submit">Register</md-button>

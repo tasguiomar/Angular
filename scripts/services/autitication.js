@@ -1,7 +1,7 @@
 angular.module('app').service('autentication', function($http,$localStorage) {
 
-    this.registry= function(callback, data){
-        $http.post('http://localhost:8000/registry', data)
+    this.register= function(callback, data){
+        $http.post('http://localhost:8000/register', data)
         .then(callback);
     }
     this.login= function(callback,email,password){

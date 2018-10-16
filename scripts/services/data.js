@@ -9,7 +9,7 @@ angular.module('app')
 
 
     this.getTodos = function (callback) {
-      $http.get('http://localhost:8000/todos')
+      $http.get('http://localhost:8000/toDo')
         .then(callback)
         // other logic...
     };

@@ -1,42 +1,28 @@
-(function () {
-    'use strict';
+angular.module('app').service('AutenticationService', function($http,$localStorage) {
 
-    angular
-        .module('app')
-        .factory('AuthenticationService', Service);
+    this.login= function(email,password,callback){
 
-    function Service($http, $localStorage) {
-        var service = {};
+        console.log(email)
+        console.log(password)
 
-        service.Login = Login;
-        service.Logout = Logout;
+        $http.post('http://localhost:8000/login', { email: email, password: password })
+        .then(callback);
+       
 
-        return service;
+    }
+        
+    this.register= function(data,callback){
+        $http.post('http://localhost:8000/login', data)
+        
+        .then(callback);
+    }
 
-        function Login(username, password, callback) {
-            $http.post('/api/authenticate', { username: username, password: password })
-                .success(function (response) {
-                    // login successful if there's a token in the response
-                    if (response.token) {
-                        // store username and token in local storage to keep user logged in between page refreshes
-                        $localStorage.currentUser = { username: username, token: response.token };
+    this.SetCredentials = function(data){
+        $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
 
-                        // add jwt token to auth header for all requests made by the $http service
-                        $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
-
-                        // execute callback with true to indicate successful login
-                        callback(true);
-                    } else {
-                        // execute callback with false to indicate failed login
-                        callback(false);
-                    }
-                });
-        }
-
-        function Logout() {
-            // remove user from local storage and clear http auth header
-            delete $localStorage.currentUser;
-            $http.defaults.headers.common.Authorization = '';
-        }
-    }//so para fazer ultimo commit 
-})();
+        $localStorage.currentUser = { 
+            user: data.user.name, 
+            token: data.token,
+        };
+    }
+    });//so para fazer ultimo commit n

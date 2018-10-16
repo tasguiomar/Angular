@@ -1,38 +1,32 @@
 
-    'use strict';
+    angular.module('app').controller('Login.IndexController',
+    function ($scope, AutenticationService, $location) {
 
-    angular
-        .module('app')
-        .controller('Login.IndexController', Controller);
-
-    function Controller($location, AuthenticationService) {
-        var vm = this;
-
-        vm.login = login;
-
-        initController();
-
-        function initController() {
-            // reset login status
-            AuthenticationService.Logout();
-        };
-
-        function login() {
-            vm.loading = true;
-            AuthenticationService.Login(vm.username, vm.password, function (result) {
-                if (result === true) {
-                    $location.path('/');
+        $scope.login = function (user) {
+            AutenticationService.login(user.email, user.password, function (response) {
+                if (response.data.token) {
+                    $location.path('/toDo')
+                    AutenticationService.SetCredentials(response.data);
                 } else {
-                    vm.error = 'Username or password is incorrect';
-                    vm.loading = false;
+                    $scope.error="Invalid email or password!";
+                    $scope.success=false;
                 }
-            });
-        };
+            })
+        }
 
-
-
-
-    }
+        $scope.register = function (data) {
+            AutenticationService.register(data, function (response) {
+                console.log(response)
+                if(!response.data.sucess){
+                    $scope.error="Email already in use!";
+                    $scope.success=false;  
+                }else{
+                    $scope.error=false;
+                    $scope.success="Accout created successfully!"
+                }
+            })
+        }
+    })
 
 
 

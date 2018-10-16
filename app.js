@@ -11,22 +11,10 @@
 
         // app routes
         $stateProvider
-            .state('home', {
-                url: '/',
-                templateUrl: 'home/index.view.html',
-                controller: 'Home.IndexController',
-                controllerAs: 'vm'
-            })
             .state('login', {
                 url: '/login',
                 templateUrl: 'login/index.view.html',
                 controller: 'Login.IndexController',
-                controllerAs: 'vm'
-            })
-            .state('register', {
-                url: '/register',
-                controller: 'RegisterController',
-                templateUrl: 'register/register.view.html',
                 controllerAs: 'vm'
             })
             .state('toDo', {

@@ -1,3 +1,4 @@
+
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express();
@@ -7,13 +8,8 @@ const Todo = require('./scripts/models/todos')
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const result = dotenv.config()
-require('./nodeEmail');
 
-if (result.error) {
-    console.log(".env file missing!")
-    process.exit()
-}
-
+app.use(express.static(__dirname + '/public'));
 
 app.listen(process.env.PORT, (err) => {
 
@@ -25,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(express.static(__dirname + '/public'));
+
 
 
 mongoose.connect(process.env.MONGOOSE, {
@@ -160,9 +156,9 @@ app.put('/user', verifyToken, (req, res) => {
     })
 })
 
-//as notificaçoes vao ser desligas por default
-//se o mail ja existir devolve erro
-app.post('/registry', (req, res) => {
+
+//verifica o registo 
+app.post('/login', (req, res) => {
     console.log(req.body)
 
     const newUser = new User({
@@ -244,7 +240,7 @@ app.post('/insert', verifyToken, (req, res) => {
     })
 })
 
-app.get('/todos', verifyToken, (req, res) => {
+app.get('/toDo', verifyToken, (req, res) => {
 
     jwt.verify(req.token, process.env.SECRETKEY, {}, (err, authData) => {
         if (err) {
