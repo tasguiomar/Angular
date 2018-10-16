@@ -37,7 +37,7 @@
 <div flex layout="column" layout-align="center" ng-controller='Login.IndexController'>
     <md-content layout="row" layout-align="center ">
         <div ng-cloak flex="90" flex-gt-md="30" >
-            <form ng-submit="login(user)" name="logForm" role="form">
+            <form ng-submit="register(user)" name="logForm" role="form">
                     <md-input-container>
                       <label>Email</label>
                       <input ng-model="user.email" type="email" required>
@@ -60,7 +60,7 @@
                         <div ng-message="required">Password</div>
                       </div>
                     </md-input-container>
-                    <md-button ng-click="registerP" class="md-raised" style="background: #FFFFFF" type="submit">Register</md-button>
+                    <md-button ng-click="register()" class="md-raised" style="background: #FFFFFF" type="submit">Register</md-button>
             </form>
         </div>
     </md-content>
