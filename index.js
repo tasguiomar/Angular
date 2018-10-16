@@ -1,4 +1,3 @@
-
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express();
@@ -9,13 +8,14 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const result = dotenv.config()
 
-app.use(express.static(__dirname + '/public'));
 
-app.listen(process.env.PORT, (err) => {
 
-    console.log('Runing '+ process.env.PORT)
-})
+app.use(express.static('/Angular'));
 
+if (result.error) {
+    console.log(".env file missing!")
+    process.exit()
+}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -256,6 +256,12 @@ app.get('/toDo', verifyToken, (req, res) => {
             });
         }
     })
+})
+
+
+app.listen(process.env.PORT, (err) => {
+
+    console.log('Runing '+ process.env.PORT)
 })
 
 

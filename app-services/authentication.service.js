@@ -5,14 +5,14 @@ angular.module('app').service('AutenticationService', function($http,$localStora
         console.log(email)
         console.log(password)
 
-        $http.post('http://localhost:8000/login', { email: email, password: password })
+        $http.post(window.location.protocol +'//'+ window.location.host + '/login', { email: email, password: password })
         .then(callback);
        
 
     }
         
     this.register= function(data,callback){
-        $http.post('http://localhost:8000/login', data)
+        $http.post(window.location.protocol +'//'+ window.location.host + '/login', data)
         
         .then(callback);
     }
@@ -26,3 +26,5 @@ angular.module('app').service('AutenticationService', function($http,$localStora
         };
     }
     });//so para fazer ultimo commit n
+
+

@@ -9,20 +9,20 @@ angular.module('app')
 
 
     this.getTodos = function (callback) {
-      $http.get('http://localhost:8000/toDo')
+      $http.get(window.location.protocol + '//' + window.location.host + '/toDo')
         .then(callback)
         // other logic...
     };
 
     this.deleteTodo = function (callback, data) {
       console.log("The " + todo.name + " todo has been deleted!")
-      $http.delete('http://localhost:8000/delete/' + data._id)
+      $http.delete(window.location.protocol + '//' + window.location.host + '/delete' + data._id)
         .then(callback);
       // other logic...
     };
 
     this.editTodos = function (data, callback) {
-      $http.put('http://localhost:8000/edit/', data)
+      $http.put(window.location.protocol + '//' + window.location.host + '/edit', data)
         .then(callback);
       // other logic...
     };
@@ -30,7 +30,7 @@ angular.module('app')
 
     this.addTodo=function(callbaclk, data){
       data.date = new Date();
-           $http.post('http://localhost:8000/insert/',data)
+           $http.post(window.location.protocol + '//' + window.location.host + '/insert',data)
        .then(callbaclk);
 
    };
