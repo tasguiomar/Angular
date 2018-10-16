@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express();
@@ -5,14 +6,15 @@ const jwt = require('jsonwebtoken')
 const User = require('./public/scripts/models/users');
 const Todo = require('./public/scripts/models/todos')
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
-const result = dotenv.config()
+
+
+//const result = dotenv.config()
 
 
 
 app.use(express.static(__dirname + "/public"));
 
-if (result.error) {
+if (dotenv.error) {
     console.log(".env file missing!")
     process.exit()
 }
