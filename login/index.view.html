@@ -22,8 +22,45 @@
                 </md-input-container>
                 <div layout="colum">
                     <md-button class="md-raised" style="background: #3385ff" type="submit">Login</md-button>
-                    <md-button ng-click="Register" class="md-raised" style="background: #FFFFFF" type="submit">Register</md-button>
                 </div>
+            </form>
+        </div>
+    </md-content>
+</div>
+
+
+
+<!--depois com tempo passar isto para outra pagina -->
+<div >
+    <h3>Register</h3>
+</div>
+<div flex layout="column" layout-align="center" ng-controller='Login.IndexController'>
+    <md-content layout="row" layout-align="center ">
+        <div ng-cloak flex="90" flex-gt-md="30" >
+            <form ng-submit="login(user)" name="logForm" role="form">
+                    <md-input-container>
+                      <label>Email</label>
+                      <input ng-model="user.email" type="email" required>
+                      <div ng-messages="registryForm.$error">
+                        <div ng-message="required">Email address is required</div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container >
+                      <label>Name</label>
+                      <input ng-model="user.name" type="text" required>
+                      <div ng-messages="registryForm.$error">
+                        <div ng-message="required">Name</div>
+                      </div>
+                    </md-input-container>
+  
+                    <md-input-container>
+                      <label>Password</label>
+                      <input ng-model="user.password" type="password" required>
+                      <div ng-messages="registryForm.$error">
+                        <div ng-message="required">Password</div>
+                      </div>
+                    </md-input-container>
+                    <md-button ng-click="registerP" class="md-raised" style="background: #FFFFFF" type="submit">Register</md-button>
             </form>
         </div>
     </md-content>

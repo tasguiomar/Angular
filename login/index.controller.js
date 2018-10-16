@@ -34,9 +34,6 @@
 
     }
 
-    $scope.registerP = function () {
-        $location.path('/register');
-      }
 
 
 
