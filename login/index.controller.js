@@ -1,4 +1,4 @@
-(function () {
+
     'use strict';
 
     angular
@@ -28,6 +28,15 @@
                 }
             });
         };
+
+
+
+
     }
 
-})();
+    $scope.registerP = function () {
+        $location.path('/register');
+      }
+
+
+

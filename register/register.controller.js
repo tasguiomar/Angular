@@ -1,5 +1,4 @@
-(function () {
-    'use strict';
+  'use strict'
 
       angular
         .module('app')
@@ -14,4 +13,7 @@
         }
     }
 
-})();
+    app.controller("RegisterController", function($scope, $routeParams){
+        $scope.initController=$routeParams.initController
+    })
+
