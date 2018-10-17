@@ -1,4 +1,3 @@
-const dotenv = require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express();
@@ -6,11 +5,10 @@ const jwt = require('jsonwebtoken')
 const User = require('./public/scripts/models/users');
 const Todo = require('./public/scripts/models/todos')
 const bodyParser = require('body-parser');
+const dotenv = require('dotenv').config();
 
 
 
-
-app.use(express.static(__dirname + "/public"));
 
 if (dotenv.error) {
     console.log(".env file missing!")
@@ -24,9 +22,10 @@ app.use(bodyParser.urlencoded({
 
 
 
-   
+app.use(express.static(__dirname + "/public"));
+
 // connect moongose
-mongoose.connect('mongodb://localhost:27017/',{
+mongoose.connect('mongodb://localhost:27017',{
     useNewUrlParser: true
 });
 
@@ -60,7 +59,6 @@ app.delete('/delete/:id', verifyToken, (req, res) => {
                     });
 
                 })
-
         }
     })
 })
@@ -261,10 +259,9 @@ app.get('/toDo', verifyToken, (req, res) => {
 })
 
 
-app.listen(process.env.PORT, (err) => {
-
-    console.log('Runing '+ process.env.PORT)
-})
+app.listen(8000, function(){
+    console.log("teste da porta 8000");
+});
 
 
 //codigo net verifica token tenho que testar e perceber
