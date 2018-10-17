@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({
 
    
 // connect moongose
-mongoose.connect('mongodb://localhost:8000/Angular',{
+mongoose.connect('mongodb://localhost:27017/',{
     useNewUrlParser: true
 });
 
