@@ -30,6 +30,13 @@ mongoose.connect('mongodb://localhost:27017/',{
     useNewUrlParser: true
 });
 
+mongoose.connection.once('open', ()=>console.log('conectado'))
+                    .on('error', (err)=> {console.log('nao conectado', err);
+});
+
+mongoose.set('useCreateIndex', true);
+
+
 app.get('/', (req, res) => {
     res.json({
         message: 'teste App'
