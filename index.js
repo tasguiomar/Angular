@@ -24,18 +24,13 @@ app.use(bodyParser.urlencoded({
 
 
 
-mongoose.connect(process.env.MONGOOSE, {
+   
+// connect moongose
+mongoose.connect('mongodb://localhost:8000/Angular',{
     useNewUrlParser: true
 });
-mongoose.connection
-    .once('open', () => console.log('connected'))
-    .on('error', (err) => {
-        console.log(` erro connect`, err);
-    });
 
 app.get('/', (req, res) => {
-
-
     res.json({
         message: 'teste App'
     });
