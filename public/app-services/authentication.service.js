@@ -7,12 +7,11 @@ angular.module('app').service('AutenticationService', function($http,$localStora
 
         $http.post(window.location.protocol +'//'+ window.location.host + '/login', { email: email, password: password })
         .then(callback);
-       
-
+    
     }
         
     this.register= function(data,callback){
-        $http.post(window.location.protocol +'//'+ window.location.host + '/login', data)
+        $http.post(window.location.protocol +'//'+ window.location.host + '/api/login', data)
         
         .then(callback);
     }

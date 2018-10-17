@@ -8,6 +8,9 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
 
 
+const uuidv1 = require('uuid/v1');
+var SECRETKEY =uuidv1();
+
 
 
 if (dotenv.error) {
@@ -28,12 +31,13 @@ app.use(express.static(__dirname + "/public"));
 mongoose.connect('mongodb://localhost:27017',{
     useNewUrlParser: true
 });
-
 mongoose.connection.once('open', ()=>console.log('conectado'))
                     .on('error', (err)=> {console.log('nao conectado', err);
 });
-
 mongoose.set('useCreateIndex', true);
+
+
+
 
 
 app.get('/', (req, res) => {
@@ -44,7 +48,7 @@ app.get('/', (req, res) => {
 
 
 app.delete('/delete/:id', verifyToken, (req, res) => {
-    jwt.verify(req.token, process.env.SECRETKEY, {
+    jwt.verify(req.token,SECRETKEY, {
     }, (err, authData) => {
         if (err) {
             res.sendStatus(403);
@@ -66,7 +70,7 @@ app.delete('/delete/:id', verifyToken, (req, res) => {
 
 
 app.put('/edit', verifyToken, (req, res) => {
-    jwt.verify(req.token, process.env.SECRETKEY, { }, (err, authData) => {
+    jwt.verify(req.token, SECRETKEY, { }, (err, authData) => {
         if (err) {
             res.sendStatus(403);
         } else {
@@ -91,7 +95,7 @@ app.put('/edit', verifyToken, (req, res) => {
 
 app.get('/user', verifyToken, (req, res) => {
 
-    jwt.verify(req.token, process.env.SECRETKEY, {
+    jwt.verify(req.token, SECRETKEY, {
     }, (err, authData) => {
         if (err) {
             res.sendStatus(403);
@@ -117,7 +121,7 @@ app.get('/user', verifyToken, (req, res) => {
 
 app.put('/user', verifyToken, (req, res) => {
 
-    jwt.verify(req.token, process.env.SECRETKEY, { }, (err, authData) => {
+    jwt.verify(req.token, SECRETKEY, { }, (err, authData) => {
         if (err) {
             res.sendStatus(403);
         } else {
@@ -158,7 +162,7 @@ app.put('/user', verifyToken, (req, res) => {
 
 
 //verifica o registo 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     console.log(req.body)
 
     const newUser = new User({
@@ -176,7 +180,7 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     User.findOne({
         email: req.body.email,
         password: req.body.password
@@ -203,7 +207,7 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/insert', verifyToken, (req, res) => {
-    jwt.verify(req.token, process.env.SECRETKEY, {}, (err, authData) => {
+    jwt.verify(req.token, SECRETKEY, {}, (err, authData) => {
         if (err) {
             res.sendStatus(403);
         } else {
@@ -242,7 +246,7 @@ app.post('/insert', verifyToken, (req, res) => {
 
 app.get('/toDo', verifyToken, (req, res) => {
 
-    jwt.verify(req.token, process.env.SECRETKEY, {}, (err, authData) => {
+    jwt.verify(req.token, SECRETKEY, {}, (err, authData) => {
         if (err) {
             res.sendStatus(403);
         } else {
