@@ -162,7 +162,7 @@ app.put('/user', verifyToken, (req, res) => {
 
 
 //verifica o registo 
-app.post('/api/login', (req, res) => {
+app.post('/login', (req, res) => {
     console.log(req.body)
 
     const newUser = new User({
@@ -180,7 +180,7 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-app.post('/api/login', (req, res) => {
+app.post('/login', (req, res) => {
     User.findOne({
         email: req.body.email,
         password: req.body.password

@@ -15,7 +15,7 @@
                 url: '/login',
                 templateUrl: 'login/index.view.html',
                 controller: 'Login.IndexController',
-                controllerAs: 'vm'
+                controllerAs: 'user'
             })
             .state('toDo', {
                 url: '/toDo',

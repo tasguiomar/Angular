@@ -11,10 +11,10 @@ angular.module('app').service('AutenticationService', function($http,$localStora
     }
         
     this.register= function(data,callback){
-        $http.post(window.location.protocol +'//'+ window.location.host + '/api/login', data)
-        
+        $http.post(window.location.protocol +'//'+ window.location.host + '/login', data)
         .then(callback);
     }
+
 
     this.SetCredentials = function(data){
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
