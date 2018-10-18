@@ -25,5 +25,3 @@ angular.module('app').service('AutenticationService', function($http,$localStora
         };
     }
     });//so para fazer ultimo commit n
-
-
