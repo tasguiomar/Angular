@@ -7,11 +7,13 @@ const Todo = require('./public/scripts/models/todos')
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv').config();
 
-
+//ligação do serv ao mongo e port
 const uuidv1 = require('uuid/v1');
 var SECRETKEY =uuidv1();
 
-
+app.listen(8000, function(){
+    console.log("teste da porta 8000");
+});
 
 if (dotenv.error) {
     console.log(".env file missing!")
@@ -40,14 +42,14 @@ mongoose.set('useCreateIndex', true);
 
 
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.json({
         message: 'teste App'
     });
 });
 
 
-app.delete('/delete/:id', verifyToken, (req, res) => {
+app.delete('/api/delete/:id', verifyToken, (req, res) => {
     jwt.verify(req.token,SECRETKEY, {
     }, (err, authData) => {
         if (err) {
@@ -69,7 +71,7 @@ app.delete('/delete/:id', verifyToken, (req, res) => {
 
 
 
-app.put('/edit', verifyToken, (req, res) => {
+app.put('/api/edit', verifyToken, (req, res) => {
     jwt.verify(req.token, SECRETKEY, { }, (err, authData) => {
         if (err) {
             res.sendStatus(403);
@@ -93,7 +95,7 @@ app.put('/edit', verifyToken, (req, res) => {
 })
 
 
-app.get('/user', verifyToken, (req, res) => {
+app.get('/api/user', verifyToken, (req, res) => {
 
     jwt.verify(req.token, SECRETKEY, {
     }, (err, authData) => {
@@ -119,7 +121,7 @@ app.get('/user', verifyToken, (req, res) => {
     })
 })
 
-app.put('/user', verifyToken, (req, res) => {
+app.put('/api/user', verifyToken, (req, res) => {
 
     jwt.verify(req.token, SECRETKEY, { }, (err, authData) => {
         if (err) {
@@ -162,11 +164,11 @@ app.put('/user', verifyToken, (req, res) => {
 
 
 //verifica o registo 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     console.log(req.body)
 
     const newUser = new User({
-        email: req.body.email,
+        name: req.body.name,
         password: req.body.password,
         name: req.body.name
     });
@@ -180,9 +182,9 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     User.findOne({
-        email: req.body.email,
+        name: req.body.name,
         password: req.body.password
     }).then(user => {
         if (user) {
@@ -206,7 +208,7 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.post('/insert', verifyToken, (req, res) => {
+app.post('/api/insert', verifyToken, (req, res) => {
     jwt.verify(req.token, SECRETKEY, {}, (err, authData) => {
         if (err) {
             res.sendStatus(403);
@@ -244,7 +246,7 @@ app.post('/insert', verifyToken, (req, res) => {
     })
 })
 
-app.get('/toDo', verifyToken, (req, res) => {
+app.get('/api/toDo', verifyToken, (req, res) => {
 
     jwt.verify(req.token, SECRETKEY, {}, (err, authData) => {
         if (err) {
@@ -263,9 +265,7 @@ app.get('/toDo', verifyToken, (req, res) => {
 })
 
 
-app.listen(8000, function(){
-    console.log("teste da porta 8000");
-});
+
 
 
 //codigo net verifica token tenho que testar e perceber

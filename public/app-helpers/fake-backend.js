@@ -11,6 +11,7 @@
 
         // fake authenticate api end point
         $httpBackend.whenPOST('/api/authenticate').respond(function (method, url, data) {
+            
             // get parameters from post request
             var params = angular.fromJson(data);
 
@@ -20,6 +21,8 @@
             } else {
                 return [200, {}, {}];
             }
+
+            status:"succes"
         });
 
         // pass through any urls not handled above so static files are served correctly

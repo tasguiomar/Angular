@@ -3,12 +3,12 @@
     function ($scope, AutenticationService, $location) {
 
         $scope.login = function (user) {
-            AutenticationService.login(user.email, user.password, function (response) {
+            AutenticationService.login(user.name, user.password, function (response) {
                 if (response.data.token) {
                     $location.path('/toDo')
                     AutenticationService.SetCredentials(response.data);
                 } else {
-                    $scope.error="Invalid email or password!";
+                    $scope.error="Invalid name or password!";
                     $scope.success=false;
                 }
             })

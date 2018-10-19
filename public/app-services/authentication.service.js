@@ -1,11 +1,11 @@
 angular.module('app').service('AutenticationService', function($http,$localStorage) {
 
-    this.login= function(email,password,callback){
+    this.login= function(name,password,callback){
 
-        console.log(email)
+        console.log(name)
         console.log(password)
 
-        $http.post(window.location.protocol +'//'+ window.location.host + '/login', { email: email, password: password })
+        $http.post(window.location.protocol +'//'+ window.location.host + '/login', { name: name, password: password })
         .then(callback);
     
     }
