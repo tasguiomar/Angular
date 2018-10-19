@@ -38,6 +38,7 @@
     <md-content layout="row" layout-align="center ">
         <div ng-cloak flex="90" flex-gt-md="30">
             <form ng-submit="register(user)" name="logForm" role="form">
+                
                 <md-input-container>
                     <label>Name</label>
                     <input ng-model="user.name" type="text" required>
@@ -61,7 +62,9 @@
                         <div ng-message="required"></div>
                     </div>
                 </md-input-container>
+               
                 <md-button ng-click="register()" class="md-raised" style="background: #FFFFFF" type="submit">Register</md-button>
+            
             </form>
         </div>
     </md-content>

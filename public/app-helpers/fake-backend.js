@@ -8,11 +8,21 @@
     // setup fake backend for backend-less development
     function setupFakeBackend($httpBackend) {
         var testUser = { username: 'test', password: 'test', firstName: 'Test', lastName: 'User' };
-
+         console.log("passou aqui");
         // fake authenticate api end point
+
+
+     /*   $httpBackend.whenPOST('/api/login').respond(function(method, url, data){
+
+        })
+        */
+
+
+
         $httpBackend.whenPOST('/api/authenticate').respond(function (method, url, data) {
-            
             // get parameters from post request
+           
+           status:"succes"
             var params = angular.fromJson(data);
 
             // check user credentials and return fake jwt token if valid
@@ -21,8 +31,6 @@
             } else {
                 return [200, {}, {}];
             }
-
-            status:"succes"
         });
 
         // pass through any urls not handled above so static files are served correctly

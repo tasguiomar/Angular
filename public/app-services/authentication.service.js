@@ -2,16 +2,14 @@ angular.module('app').service('AutenticationService', function($http,$localStora
 
     this.login= function(name,password,callback){
 
-        console.log(name)
-        console.log(password)
-
         $http.post(window.location.protocol +'//'+ window.location.host + '/login', { name: name, password: password })
         .then(callback);
+
     
     }
         
     this.register= function(data,callback){
-        $http.post(window.location.protocol +'//'+ window.location.host + '/login', data)
+        $http.post(window.location.protocol +'//'+ window.location.host + '/register', data)
         .then(callback);
     }
 

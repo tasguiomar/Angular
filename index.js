@@ -173,6 +173,8 @@ app.post('/api/login', (req, res) => {
         name: req.body.name
     });
 
+    
+
     newUser.save().then(savedUser => {
 
         res.send({sucess:'User saved!'})
@@ -182,7 +184,7 @@ app.post('/api/login', (req, res) => {
     });
 });
 
-app.post('/api/login', (req, res) => {
+app.post('/api/register', (req, res) => {
     User.findOne({
         name: req.body.name,
         password: req.body.password
@@ -204,6 +206,7 @@ app.post('/api/login', (req, res) => {
                 message: "error"
             })
         }
+
 
     })
 })

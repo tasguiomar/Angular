@@ -3,6 +3,7 @@
     function ($scope, AutenticationService, $location) {
 
         $scope.login = function (user) {
+            console.log(" passa no controllador");
             AutenticationService.login(user.name, user.password, function (response) {
                 if (response.data.token) {
                     $location.path('/toDo')
